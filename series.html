@@ -57,46 +57,108 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-lg-4">
-          <span>BBBBBBWWWWWWWWAAAAAAAAHHHHHHHH</span>
-        </div>
-        <div class="col-lg-4">
-          Paramètres à utiliser : 
-            nom série = /tv/tv_program
-            genre = /tv/tv_program/genre
-            nom createur = /tv/tv_program/program_creator
-            date début = /tv/tv_program/air_date_of_first_episode
-            date fin = /tv/tv_program/air_date_of_final_episode
-            chaine initiale = /tv/tv_program/original_network
-            nombre de saison = /tv/tv_program/number_of_seasons
-            pays d'origine = /tv/tv_program/country_of_origin
-<!-- Requete type
-[{
-  "name": null,
-  "id": null,
-  "genre": [],
-  "program_creator~=": "J.J.",
-  "program_creator": [],
-  "air_date_of_first_episode": null,
-  "air_date_of_final_episode": null,
-  "original_network": [],
-  "number_of_seasons": null,
-  "country_of_origin": [],
-  "type": "/tv/tv_program"
-}]-->
-        </div>
-        <div class="col-lg-4">
-          <span>Liste des genres</span>
-          <select class="form-control">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
+        <div id="series-recherche" class="col-lg-4">
+          <input type="text" id="series-nom" class="form-control" placeholder="Recherche par nom">
+
+          <div id="series-genres" class="col-lg-6 col-md-4 col-xs-4">
+            <span>Genres</span>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <input type="text" id="series-createur" class="form-control" placeholder="Recherche par créateur">
+
+          <input type="text" id="series-date-debut" class="form-control" placeholder="Recherche par date ou année de début">
+
+          <input type="text" id="series-date-fin" class="form-control" placeholder="Recherche par date ou année de fin">
+
+          <div id="series-chaines" class="col-lg-6 col-md-4 col-xs-4">
+            <span>Chaînes</span>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
+          <div id="series-pays" class="col-lg-6 col-md-4 col-xs-4">
+            <span>Pays d'origine</span>
+            <select class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+
         </div>
       </div>
 
+      <div class="row">
+            <div class="col-lg-12">
+                Paramètres à utiliser : 
+                  nom série = /tv/tv_program
+                  genre = /tv/tv_program/genre
+                  nom createur = /tv/tv_program/program_creator
+                  date début = /tv/tv_program/air_date_of_first_episode
+                  date fin = /tv/tv_program/air_date_of_final_episode
+                  chaine initiale = /tv/tv_program/original_network
+                  nombre de saison = /tv/tv_program/number_of_seasons
+                  pays d'origine = /tv/tv_program/country_of_origin
+                <br />
+                <br />
+                --- requete pour rechercher une série ---
+                <br />
+                [{
+                  "name~=": "*nomDeLaSerie*",
+                  "name": null,
+                  "id": null,
+                  "genre": [],
+                  "program_creator": [],
+                  "air_date_of_first_episode": null,
+                  "air_date_of_final_episode": null,
+                  "original_network": [],
+                  "/tv/tv_network_duration/network": null,
+                  "/tv/tv_network_duration/from": null,
+                  "/tv/tv_network_duration/to": null,
+                  "number_of_seasons": null,
+                  "country_of_origin": [],
+                  "type": "/tv/tv_program"
+                }]
+                -----------------------------------------
+                <br />
+                --- genres ---
+                <br />
+                [{
+                  "name": null,
+                  "type": "/tv/tv_genre"
+                }]
+                --------------
+                <br />
+                --- chaines ---
+                <br />
+                [{
+                  "name": null,
+                  "type": "/tv/tv_network"
+                }]
+                --------------
+                <br />
+                --- pays ---
+                <br />
+                [{
+                  "name": null,
+                  "type": "/tv/tv_network"
+                }]
+                --------------
+      </div>
       <hr>
 
       <footer>
