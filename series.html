@@ -59,46 +59,48 @@
       <div class="row">
         <div id="series-recherche" class="col-lg-4">
           <input type="text" id="series-nom" class="form-control" placeholder="Recherche par nom">
+          <span class="glyphicon glyphicon-circle-arrow-down" onclick="openMoreFilter()"></span>
 
-          <div id="series-genres" class="col-lg-6 col-md-4 col-xs-4">
-            <span>Genres</span>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
+            <div id="filtres-additionnels" style="display: none">
+              <div id="series-genres" class="col-lg-6 col-md-4 col-xs-4">
+                <span>Genres</span>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
 
-          <input type="text" id="series-createur" class="form-control" placeholder="Recherche par créateur">
+              <input type="text" id="series-createur" class="form-control" placeholder="Recherche par créateur">
 
-          <input type="text" id="series-date-debut" class="form-control" placeholder="Recherche par date ou année de début">
+              <input type="text" id="series-date-debut" class="form-control" placeholder="Recherche par date ou année de début">
 
-          <input type="text" id="series-date-fin" class="form-control" placeholder="Recherche par date ou année de fin">
+              <input type="text" id="series-date-fin" class="form-control" placeholder="Recherche par date ou année de fin">
 
-          <div id="series-chaines" class="col-lg-6 col-md-4 col-xs-4">
-            <span>Chaînes</span>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
+              <div id="series-chaines" class="col-lg-6 col-md-4 col-xs-4">
+                <span>Chaînes</span>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
 
-          <div id="series-pays" class="col-lg-6 col-md-4 col-xs-4">
-            <span>Pays d'origine</span>
-            <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
+              <div id="series-pays" class="col-lg-6 col-md-4 col-xs-4">
+                <span>Pays d'origine</span>
+                <select class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
         </div>
       </div>
 
@@ -164,7 +166,8 @@
       <footer>
         <p>&copy; Company 2013</p>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    </div> <!-- /container -->
+        <script src="/js/jquery-2.0.3.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
@@ -177,5 +180,6 @@
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
+        <script src="series.js"></script>
     </body>
 </html>
