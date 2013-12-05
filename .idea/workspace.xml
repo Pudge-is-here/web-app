@@ -26,7 +26,16 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="30" selection-start="2632" selection-end="2632" vertical-scroll-proportion="-41.192307" vertical-offset="0" max-vertical-offset="1598">
+            <state line="74" column="55" selection-start="2789" selection-end="2836" vertical-scroll-proportion="-19.0" vertical-offset="764" max-vertical-offset="1615">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="films.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/films.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="73" column="8" selection-start="2764" selection-end="2764" vertical-scroll-proportion="0.59232616" vertical-offset="747" max-vertical-offset="1598">
               <folding />
             </state>
           </provider>
@@ -35,7 +44,7 @@
       <file leaf-file-name="series.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/series.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="96" selection-start="2695" selection-end="2695" vertical-scroll-proportion="-11.153846" vertical-offset="747" max-vertical-offset="3247">
+            <state line="169" column="55" selection-start="6601" selection-end="6648" vertical-scroll-proportion="-17.692308" vertical-offset="2413" max-vertical-offset="3247">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -43,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="series.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="series.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/series.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="8" selection-start="136" selection-end="136" vertical-scroll-proportion="0.077892326" vertical-offset="0" max-vertical-offset="873">
+            <state line="6" column="8" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
               <folding>
                 <element signature="n#!!doc;n#openMoreFilter#0" expanded="false" />
               </folding>
@@ -72,9 +81,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/series.html" />
         <option value="$PROJECT_DIR$/series.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/films.html" />
       </list>
     </option>
   </component>
@@ -207,7 +217,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -257,35 +267,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/films.html">
+    <entry file="file://$PROJECT_DIR$/series.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1581">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="30" selection-start="2632" selection-end="2632" vertical-scroll-proportion="-41.192307" vertical-offset="0" max-vertical-offset="1598">
-          <folding />
+        <state line="6" column="8" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+          <folding>
+            <element signature="n#!!doc;n#openMoreFilter#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/series.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="96" selection-start="2695" selection-end="2695" vertical-scroll-proportion="-11.153846" vertical-offset="747" max-vertical-offset="3247">
+        <state line="169" column="55" selection-start="6601" selection-end="6648" vertical-scroll-proportion="-17.692308" vertical-offset="2413" max-vertical-offset="3247">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/series.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="8" selection-start="136" selection-end="136" vertical-scroll-proportion="0.077892326" vertical-offset="0" max-vertical-offset="873">
-          <folding>
-            <element signature="n#!!doc;n#openMoreFilter#0" expanded="false" />
-          </folding>
+        <state line="74" column="55" selection-start="2789" selection-end="2836" vertical-scroll-proportion="-19.0" vertical-offset="764" max-vertical-offset="1615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/films.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="8" selection-start="2764" selection-end="2764" vertical-scroll-proportion="0.59232616" vertical-offset="747" max-vertical-offset="1598">
+          <folding />
         </state>
       </provider>
     </entry>
