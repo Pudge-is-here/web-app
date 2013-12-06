@@ -81,12 +81,14 @@
         <script>
             var requete1 = new Requete();
             requete1.rechercherFilm({nom: "*odzilla*", debut: null, fin: null}, function(data) {
+                requete1.rechercheSuivante(function(data) {console.log(data)});
                 console.log(data);
             });
-            /*var requete2 = new Requete();
+            var requete2 = new Requete();
             requete2.rechercherSerie({nom: "*ost*", debut: null, fin: null}, function(data) {
+                requete2.rechercheSuivante(function(data) {console.log(data)});
                 console.log(data);
-            });*/
+            });
         </script>
 
     </body>
