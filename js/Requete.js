@@ -61,6 +61,47 @@ function Requete() {
         }
         envoyerLaRequete();
     };
+    this.recupererLeFilm = function(id, callback) {
+      var requeteDetail = {
+        "/common/topic/image": {
+            "id": null,
+            "limit": 1,
+            "optional": true
+          },
+          "directed_by": [],
+          "genre": [],
+          "id": id,
+          "initial_release_date": null,
+          "name": null,
+          "tagline": [],
+          "trailers": [],
+          "type": "/film/film"
+      };
+      envoyerLaRequeteDetail(requeteDetail, callback);
+    };
+    this.recupererLaSerie = function(id, callback) {
+        var requeteDetail = {
+            "type": "/tv/tv_program",
+            "id": id,
+            "name": null,
+            "genre": [],
+            "air_date_of_first_episode": null,
+            "program_creator": [],
+            "original_network": [],
+            "country_of_origin": [],
+            "/tv/tv_network_duration/from": null,
+            "/tv/tv_network_duration/to": null,
+            "number_of_seasons": null,
+            "/common/topic/image": {
+              "id": null,
+              "limit": 1,
+              "optional": true
+            }
+          };
+
+        envoyerLaRequeteDetail(requeteDetail, callback);
+
+    }
 
     function envoyerLaRequete() {
         $.getJSON(formateur.formaterLURLRequete(curseur), {query: JSON.stringify([requete])}, function(donnees) {
@@ -68,6 +109,12 @@ function Requete() {
             var donneesFormate = formateur.formaterLeResultat(donnees.result);
             traiterLeResultat(donneesFormate);
         });
+    }
+    function envoyerLaRequeteDetail(requeteDetail, callback) {
+         $.getJSON(formateur.formaterLURLRequete(), {query: JSON.stringify([requeteDetail])}, function(donnees) {
+             var donneesFormate = formateur.formaterLeResultat(donnees.result);
+             callback(donneesFormate[0]);
+           });
     }
 
 }
@@ -147,7 +194,24 @@ function FormateurRequete(){
     }
 
     function transformerLaDateEnChaine(date) {
-        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        return date.getFullYear() + '-' + recupererLeMois() + '-' + recupererLeJour();
+
+        function recupererLeMois() {
+            var mois;
+            if(date.getMonth() + 1 < 10)
+                mois = '0' + date.getMonth() + 1;
+            else
+                mois = date.getMonth() + 1;
+            return mois;
+        }
+        function recupererLeJour() {
+            var jour;
+            if(date.getData() < 10)
+                jour = '0' + date.getData();
+            else
+                jour = date.getData();
+            return jour;
+        }
     }
     function formaterUnElement(element) {
         var elementFormate = {};

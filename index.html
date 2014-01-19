@@ -80,14 +80,16 @@
         <script src="js/main.js"></script>
         <script>
             var requete1 = new Requete();
-            requete1.rechercherFilm({nom: "*odzilla*", debut: null, fin: null}, function(data) {
-                requete1.rechercheSuivante(function(data) {console.log(data)});
+            requete1.rechercherFilm({debut: '2000-01-01', fin: '2013-12-01'}, function(data) {
                 console.log(data);
+                requete1.rechercheSuivante(function(nextData) {console.log(nextData)});
+                requete1.recupererLeFilm('/en/300_2007', function(nextData) { console.log(nextData)});
             });
             var requete2 = new Requete();
             requete2.rechercherSerie({nom: "*ost*", debut: null, fin: null}, function(data) {
-                requete2.rechercheSuivante(function(data) {console.log(data)});
                 console.log(data);
+                requete2.rechercheSuivante(function(nextData) {console.log(nextData)});
+                requete2.recupererLaSerie('/en/the_sopranos', function(nextData) { console.log(nextData);});
             });
         </script>
 
