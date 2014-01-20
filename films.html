@@ -122,7 +122,7 @@
            UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
 
                 for(var i=0;i<resultat.length;i++){
-                    texte+="<div class='monfilm list-group ' style='height: 220px;'>"
+                    texte+="<div class='monfilm list-group well' style='height: 220px;'>"
                     texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
                     texte+="</div>"
@@ -130,10 +130,7 @@
                     texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
                     texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
                     texte+="<span>Genres :</span>"
-                    for(var j=0;j<resultat[i].genres.length;j++)
-                    {
-                        texte+=" <span>"+resultat[i].genres[j]+"</span> "
-                    }
+                    texte+=" <span>"+resultat[i].genres+"</span> "
                     texte+="<br>"
                     texte+="<span>"+resultat[i].resume[0]+"</span>"
                     texte+="</div>"
