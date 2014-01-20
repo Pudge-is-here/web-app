@@ -89,7 +89,7 @@
         var texte=""
         requeteFilmDetails.recupererLeFilm(''+idFilm+'', function(resultat) {
             console.log(resultat);
-            texte+="<div class='row monfilm list-group well' >"
+            texte+="<div class='row monfilm list-group well col-xs-12 col-md-12 col-lg-12' >"
             texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
             if(resultat.image==null){
                 texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
@@ -106,10 +106,12 @@
             texte+="<br>"
             texte+="<span>"+resultat.resume[0]+"</span>"
             texte+="<br>"
+            texte+="<div class='lesvideos col-xs-12 col-md-12 col-lg-12'>"
             for(var i=0;i<resultat.trailers.length;i++){
                 var Chaineparser = resultat.trailers[i].split('=')
-                texte+='<iframe width="560" height="315" src="//www.youtube.com/embed/'+Chaineparser[1]+'" frameborder="0" allowfullscreen></iframe>'
+                texte+='<iframe class="col-xs-12 col-md-12 col-lg-12" width="560" height="315" src="//www.youtube.com/embed/'+Chaineparser[1]+'" frameborder="0" allowfullscreen></iframe>'
             }
+            texte+="</div>"
             texte+="</div>"
             texte+="</div>"
             $("#resultats-details-films").append(texte)
