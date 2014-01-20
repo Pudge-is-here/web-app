@@ -7,7 +7,7 @@ function openMoreFilter() {
 
 }
 
-function recherche(){
+/*function recherche(){
     var _nom, _debut, _fin, _genre, _chaine, _pays, _createur;
 
     _nom = $('#series-nom').val();
@@ -23,4 +23,4 @@ function recherche(){
         //traiter le resultat
         alert(2);
     });
-}
+}*/
