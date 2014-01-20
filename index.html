@@ -86,7 +86,7 @@
                 requete1.recupererLeFilm('/en/300_2007', function(nextData) { console.log(nextData)});
             });
             var requete2 = new Requete();
-            requete2.rechercherSerie({nom: "*sopranos*", debut: null, fin: null}, function(data) {
+            requete2.rechercherSerie({nom: "*ost*", debut: null, fin: null}, function(data) {
                 console.log(data);
                 requete2.rechercheSuivante(function(nextData) {console.log(nextData)});
                 requete2.recupererLaSerie('/en/the_sopranos', function(nextData) { console.log(nextData);});
