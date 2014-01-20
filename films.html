@@ -122,8 +122,10 @@
     $(function() {
         $("#btn-search").on("click", function() {
             $('#mesfilms').slideUp(200);
-            $('#marecherche').slideToggle(200);
+            $('#marecherche').fadeOut(200);
+            $('#marecherche').empty();
             recherchefilm($("#films-nom").val());
+            $('#marecherche').fadeIn(200);
         });
     })
 
@@ -145,7 +147,8 @@
                     texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='height: 100%;'/>"
 
                 texte+="</div>"
-                texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat[i].nom+"</h2>"
+                //texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat[i].nom+"</h2>"
+                texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
                 texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
                 texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
                 texte+="<span>Genres :</span>"
@@ -154,9 +157,7 @@
                 texte+="<span>"+resultat[i].resume[0]+"</span>"
                 texte+="</div>"
                 texte+="</div>"
-
             }
-            console.log("texte")
             $("#marecherche").append(texte);
 
         })
@@ -174,7 +175,13 @@
         for(var i=0;i<resultat.length;i++){
             texte+="<div class='monfilm list-group well' style='height: 220px;'>"
             texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
-            texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+            if(resultat[i].image == null){
+                texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+            }
+            else
+            {
+                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
+            }
             texte+="</div>"
             texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
             texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"

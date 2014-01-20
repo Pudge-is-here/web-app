@@ -95,10 +95,37 @@
 
 <script>
     var idSerie = getUrlParameters("id","",true);
-    var requeteSerieDetails=new Requete();
-    requeteSerieDetails.recupererLaSerie(''+idSerie+'', function(nextData) {
-        console.log(nextData);
-        $("#resultats-details-series").append(""+nextData)
+    var requeteSerieDetails = new Requete();
+    var texte=""
+    requeteSerieDetails.recupererLaSerie(''+idSerie+'', function(resultat) {
+        console.log(resultat);
+        texte+="<div class='row maserie list-group well col-xs-12 col-md-12 col-lg-12' >"
+        texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
+        if(resultat.image==null){
+            texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
+        }
+        else
+            texte+="<img src='"+resultat.image+"' class='monaffiche' style='width: 100%;'/>"
+
+        texte+="</div>"
+        texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat.nom+"</h2>"
+        texte+="<span>Réalisateur :"+resultat.realisateurs+"</span><br>"
+        texte+="<span>Date de sortie :"+resultat.dateSortie+"</span><br>"
+        texte+="<span>Genres :</span>"
+        texte+=" <span>"+resultat.genres+"</span> "
+        texte+="<br>"
+        texte+="<span>Nombre de saisons :</span>"
+        texte+=" <span>"+resultat.nombreSaisons+"</span> "
+        texte+="<br>"
+        texte+="<span>Début de diffusion :</span>"
+        texte+=" <span>"+resultat.debut+"</span> "
+        texte+="<br>"
+        texte+="<span>Fin de diffusion :</span>"
+        texte+=" <span>"+resultat.fin+"</span> "
+        texte+="<br>"
+        texte+="</div>"
+        texte+="</div>"
+        $("#resultats-details-series").append(texte)
     });
 </script>
 </body>

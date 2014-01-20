@@ -66,14 +66,12 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <input type="text" id="series-nom" class="form-control" placeholder="Rechercher une série" >
             </div>
-            <button class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
+            <button id="btn-search" class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0"><i class="glyphicon glyphicon-search"></i></button>
             <button type="button" class="btn btn-default  col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
                 <span class="glyphicon glyphicon-circle-arrow-down"></span> Recherche avancée
             </button>
         </div>
-
+    </div>
         <div class="row">
             <div id="filtres-additionnels" style="display: none;" class="col-lg-6">
                 <div class="row col-lg-5 col-md-5 col-xs-5">
@@ -88,7 +86,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row col-lg-4 col-md-4 col-xs-4">
                     <div id="series-chaines">
                         <label>Chaînes</label>
@@ -101,7 +98,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row col-lg-4 col-md-4 col-xs-4">
                     <div id="series-pays">
                         <label>Pays d'origine</label>
@@ -114,79 +110,21 @@
                         </select>
                     </div>
                 </div>
-
                 <input type="text" id="series-createur" class="form-control col-lg-6 col-md-4 col-xs-4" placeholder="Recherche par créateur">
-
                 <input type="text" id="series-date-debut" class="form-control col-lg-6 col-md-4 col-xs-4" placeholder="Recherche par date ou année de début">
-
                 <input type="text" id="series-date-fin" class="form-control col-lg-6 col-md-4 col-xs-4" placeholder="Recherche par date ou année de fin">
-
             </div>
         </div>
+        <div id="resultats-series" class="row">
 
-    </div>
 
-    <div class="row">
-        <div id="resultats-series" class="col-lg-12">
 
         </div>
-        <div class="col-lg-12">
-            Paramètres à utiliser :
-            nom série = /tv/tv_program
-            genre = /tv/tv_program/genre
-            nom createur = /tv/tv_program/program_creator
-            date début = /tv/tv_program/air_date_of_first_episode
-            date fin = /tv/tv_program/air_date_of_final_episode
-            chaine initiale = /tv/tv_program/original_network
-            nombre de saison = /tv/tv_program/number_of_seasons
-            pays d'origine = /tv/tv_program/country_of_origin
-            <br />
-            <br />
-            --- requete pour rechercher une série ---
-            <br />
-            [{
-            "name~=": "*nomDeLaSerie*",
-            "name": null,
-            "id": null,
-            "genre": [],
-            "program_creator": [],
-            "air_date_of_first_episode": null,
-            "air_date_of_final_episode": null,
-            "original_network": [],
-            "/tv/tv_network_duration/network": null,
-            "/tv/tv_network_duration/from": null,
-            "/tv/tv_network_duration/to": null,
-            "number_of_seasons": null,
-            "country_of_origin": [],
-            "type": "/tv/tv_program"
-            }]
-            -----------------------------------------
-            <br />
-            --- genres ---
-            <br />
-            [{
-            "name": null,
-            "type": "/tv/tv_genre"
-            }]
-            --------------
-            <br />
-            --- chaines ---
-            <br />
-            [{
-            "name": null,
-            "type": "/tv/tv_network"
-            }]
-            --------------
-            <br />
-            --- pays ---
-            <br />
-            [{
-            "name": null,
-            "type": "/tv/tv_network"
-            }]
-            --------------
+        <div id="marecherche-serie" class="row">
+
+
+
         </div>
-    </div>
     <hr>
 
     <footer>
@@ -210,6 +148,57 @@
 <link rel="stylesheet" src="/css/series.css">
 
 <script>
+    $(function() {
+        $("#btn-search").on("click", function() {
+            $('#resultats-series').slideUp(200);
+            $('#marecherche-serie').fadeOut(200);
+            $('#marecherche-serie').empty();
+            rechercheserie($("#series-nom").val());
+            $('#marecherche-serie').fadeIn(200);
+        });
+    })
+
+    function rechercheserie(laserie){
+        console.log(laserie)
+        var UneRequete=new Requete();
+
+        var texte="";
+        UneRequete.rechercherSerie({nom:laserie}, function(resultat) {
+            console.log(resultat);
+            for(var i=0;i<resultat.length;i++){
+                console.log(resultat);
+                texte+="<div class='maserie list-group well' style='height: 220px;'>"
+                texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+                if(resultat[i].image == null){
+                    texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+                }
+                else
+                {
+                    texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
+                }
+                texte+="</div>"
+                texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-serie.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
+                texte+="<span>Réalisateur :"+resultat[i].realisateurs+"</span><br>"
+                texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
+                texte+="<span>Genres :</span>"
+                texte+=" <span>"+resultat[i].genres+"</span> "
+                texte+="<br>"
+                texte+="<span>Nombre de saisons :</span>"
+                texte+="<span>"+resultat[i].nombreSaisons+"</span>"
+                texte+="<br>"
+                texte+="<span>Chaînes :</span>"
+                texte+="<span>"+resultat[i].chaines+"</span>"
+                texte+="<br>"
+                texte+="<span>Date de première et dernière diffusion :</span>"
+                texte+="<span>"+resultat[i].debut+"</span> "
+                texte+="<span>"+resultat[i].fin+"</span>"
+                texte+="</div>"
+                texte+="</div>"
+            }
+            $("#marecherche-serie").append(texte);
+
+        })
+    }
 
     var requeteSerie=new Requete();
     var d = new Date();
@@ -217,10 +206,8 @@
     var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
     var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
     var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
-    requeteSerie.rechercherSerie({nom: "*ringe*", debut: null, fin: null}, function(data) {
-
+    requeteSerie.rechercherSerie({nom: null, debut: "2013", fin: null}, function(resultat) {
         for(var i=0;i<resultat.length;i++){
-            var numSerie = i + 1;
 
             texte+="<div class='maserie list-group well' style='height: 220px;'>"
             texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
@@ -229,7 +216,7 @@
             }
             else
             {
-                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 100%;'/>"
+                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
             }
             texte+="</div>"
             texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-serie.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
@@ -249,15 +236,9 @@
             texte+="<span>"+resultat[i].fin+"</span>"
             texte+="</div>"
             texte+="</div>"
-            console.log(resultat[i]);
-            RequeteDetails= new Requete();
-            RequeteDetails.recupererLeFilm(''+resultat[i].id+'',function(resultatdetail){
-                console.log(resultatdetail);
-            })
         }
         $("#resultats-series").append(texte);
-        requeteSerie.rechercheSuivante(function(nextData) {console.log(nextData)});
-        requeteSerie.recupererLaSerie('/en/the_sopranos', function(nextData) { console.log(nextData);});
+
     })
 </script>
 </body>
