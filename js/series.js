@@ -1,11 +1,6 @@
 /**
  * Created by Yoann on 05/12/13.
  */
-$.getScript("js/Requete.js", function(){
-
-    alert("Script loaded and executed.");
-    // Here you can use anything you defined in the loaded script
-});
 
 function openMoreFilter() {
         $('#filtres-additionnels').slideToggle();

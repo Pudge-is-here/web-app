@@ -22,6 +22,10 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+        <script src="js/Requete.js"></script>
+        <script src="js/series.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -199,8 +203,16 @@
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-        <script src="js/series.js"></script>
-        <script src="js/Requete.js"></script>
+
         <link rel="stylesheet" src="/css/series.css">
+
+        <script>
+            var requete1 = new Requete();
+            requete1.rechercherSerie({nom: "*ost*", debut: null, fin: null}, function(data) {
+                console.log(data);
+                requete2.rechercheSuivante(function(nextData) {console.log(nextData)});
+                requete2.recupererLaSerie('/en/the_sopranos', function(nextData) { console.log(nextData);});
+            });
+        </script>
     </body>
 </html>
