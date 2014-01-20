@@ -1,18 +1,13 @@
 /**
  * Created by Yoann on 05/12/13.
  */
-$.getScript("js/Requete.js", function(){
-
-    alert("Script loaded and executed.");
-    // Here you can use anything you defined in the loaded script
-});
 
 function openMoreFilter() {
         $('#filtres-additionnels').slideToggle();
 
 }
 
-function recherche(){
+/*function recherche(){
     var _nom, _debut, _fin, _genre, _chaine, _pays, _createur;
 
     _nom = $('#series-nom').val();
@@ -28,4 +23,4 @@ function recherche(){
         //traiter le resultat
         alert(2);
     });
-}
+}*/
