@@ -86,9 +86,33 @@
     <script type="text/javascript">
         var idFilm = getUrlParameters("id","",true);
         var requeteFilmDetails=new Requete();
-        requeteFilmDetails.recupererLeFilm(''+idFilm+'', function(nextData) {
-            console.log(nextData);
-            $("#resultats-details-films").append(""+nextData)
+        var texte=""
+        requeteFilmDetails.recupererLeFilm(''+idFilm+'', function(resultat) {
+            console.log(resultat);
+            texte+="<div class='row monfilm list-group well' >"
+            texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
+            if(resultat.image==null){
+                texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
+            }
+            else
+                texte+="<img src='"+resultat.image+"' class='monaffiche' style='height: 100%;'/>"
+
+            texte+="</div>"
+            texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat.nom+"</h2>"
+            texte+="<span>Réalisateur :"+resultat.realisateurs[0]+"</span><br>"
+            texte+="<span>Date de sortie :"+resultat.dateSortie+"</span><br>"
+            texte+="<span>Genres :</span>"
+            texte+=" <span>"+resultat.genres+"</span> "
+            texte+="<br>"
+            texte+="<span>"+resultat.resume[0]+"</span>"
+            texte+="<br>"
+            for(var i=0;i<resultat.trailers.length;i++){
+                var Chaineparser = resultat.trailers[i].split('=')
+                texte+='<iframe width="560" height="315" src="//www.youtube.com/embed/'+Chaineparser[1]+'" frameborder="0" allowfullscreen></iframe>'
+            }
+            texte+="</div>"
+            texte+="</div>"
+            $("#resultats-details-films").append(texte)
         });
     </script>
     <script src="js/films.js"></script>
