@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="js/Requete.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -47,12 +48,12 @@
     </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Film</h1>
-        <p>Vous êtes amateur de films ? Ne bougez pas, nous avons ce qu'il vous faut, ici-même.</p>
-      </div>
-    </div>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Films</h1>
+                <p>Ici, tout ce que vous avez toujours rêvé de savoir sur vos films préférées.</p>
+            </div>
+        </div>
 
     <div class="container">
       <!-- Example row of columns -->
@@ -87,7 +88,11 @@
 				</div>
 			</div>
 		</div>
+        <div id="mesfilms" class="row">
 
+
+
+        </div>
       <hr>
 
       <footer>
@@ -106,6 +111,44 @@
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+        <script type="text/javascript">
+            var UneRequete=new Requete();
+            var d = new Date();
+            var texte="";
+            var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
+            var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
+            var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
+           UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
+
+                for(var i=0;i<resultat.length;i++){
+                    texte+="<div class='monfilm list-group ' style='height: 220px;'>"
+                    texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+                    texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+                    texte+="</div>"
+                    texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat[i].nom+"</h2>"
+                    texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
+                    texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
+                    texte+="<span>Genres :</span>"
+                    for(var j=0;j<resultat[i].genres.length;j++)
+                    {
+                        texte+=" <span>"+resultat[i].genres[j]+"</span> "
+                    }
+                    texte+="<br>"
+                    texte+="<span>"+resultat[i].resume[0]+"</span>"
+                    texte+="</div>"
+                    texte+="</div>"
+                    console.log(resultat[i]);
+                    RequeteDetails= new Requete();
+                    RequeteDetails.recupererLeFilm(resultat[i].id,function(resultatdetail){
+                        console.log(resultatdetail);
+                    })
+                }
+                console.log(texte);
+                $("#mesfilms").append(texte);
+
+            })
+
         </script>
 		<script src="js/films.js"></script>
 
