@@ -3,209 +3,151 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="css/films.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/films.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="js/Requete.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="js/Requete.js"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Pudge TV</a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Pudge TV</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li><a href="index.html">Accueil</a></li>
-              <li><a href="series.html">Série</a></li>
-              <li class="active"><a href="films.html">Films</a></li>
-          </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="series.html">Série</a></li>
+                <li class="active"><a href="films.html">Films</a></li>
+            </ul>
         </div><!--/.navbar-collapse -->
-      </div>
     </div>
+</div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Films</h1>
-                <p>Ici, tout ce que vous avez toujours rêvé de savoir sur vos films préférées.</p>
-            </div>
-        </div>
-
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
     <div class="container">
-      <!-- Example row of columns -->
-		<div class="row">
+        <h1>Films</h1>
+        <p>Ici, tout ce que vous avez toujours rêvé de savoir sur vos films préférées.</p>
+    </div>
+</div>
 
-			<div id="films-recherche" style="display: inline-flex" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><input type="text" id="films-nom" class="form-control" placeholder="Rechercher un film" >
-                </div>
-                <button id="btn-search" class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0"><i class="glyphicon glyphicon-search"></i></button>
-                <button type="button" class="btn btn-default  col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
-                <span class="glyphicon glyphicon-circle-arrow-down"></span> Recherche avancée
-                </button>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+
+        <div id="films-recherche" style="display: inline-flex" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><input type="text" id="films-nom" class="form-control" placeholder="Rechercher un film" >
             </div>
-		</div>
-		<div class="row" style="margin-left: 15px;">
-			<div id="filtreplus" style="display: none;margin-top:20px;">
-				<div class="row col-lg-5 col-md-5 col-xs-5">
-								<div id="films-genres">
-									<select class="form-control">
-										 <option>1</option>
-										 <option>2</option>
-										 <option>3</option>
-										 <option>4</option>
-										 <option>5</option>
-									</select>
-								</div>
-								<input type="text" id="films-realisateur" class="form-control " placeholder="Recherche par réalisateur">
-				</div>
-				<div class="row-reverse col-lg-5 col-md-5 col-xs-5">
-					<input type="text" id="films-date-debut" class="form-control " placeholder="Recherche par date ou année de début">
-					<input type="text" id="films-date-fin" class="form-control" placeholder="Recherche par date ou année de fin">
-				</div>
-			</div>
-		</div>
-        <script type="text/javascript">
-
-        </script>
-        <div id="mesfilms" class="row">
-
-
-
+            <button class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0"><i class="glyphicon glyphicon-search"></i></button>
+            <button type="button" class="btn btn-default  col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
+                <span class="glyphicon glyphicon-circle-arrow-down"></span> Recherche avancée
+            </button>
         </div>
-
-        <div id="marecherche" class="row">
-
-
-
+    </div>
+    <div class="row" style="margin-left: 15px;">
+        <div id="filtreplus" style="display: none;margin-top:20px;">
+            <div class="row col-lg-5 col-md-5 col-xs-5">
+                <div id="films-genres">
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <input type="text" id="films-realisateur" class="form-control " placeholder="Recherche par réalisateur">
+            </div>
+            <div class="row-reverse col-lg-5 col-md-5 col-xs-5">
+                <input type="text" id="films-date-debut" class="form-control " placeholder="Recherche par date ou année de début">
+                <input type="text" id="films-date-fin" class="form-control" placeholder="Recherche par date ou année de fin">
+            </div>
         </div>
-      <hr>
+    </div>
+    <div id="mesfilms" class="row">
 
-      <footer>
+
+
+    </div>
+    <hr>
+
+    <footer>
         <p>&copy; Company 2013</p>
-      </footer>
-    </div> <!-- /container -->
-        <script src="/js/jquery-2.0.3.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+    </footer>
+</div> <!-- /container -->
+<script src="/js/jquery-2.0.3.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/main.js"></script>
+<script src="js/main.js"></script>
 
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-        <script type="text/javascript">
+<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<script type="text/javascript">
+    var UneRequete=new Requete();
+    var d = new Date();
+    var texte="";
+    var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
+    var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
+    var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
+    UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
 
-            $(function() {
-                $("#btn-search").on("click", function() {
-                    $('#mesfilms').slideUp(200);
-                    $('#marecherche').slideToggle(200);
-                    recherchefilm($("#films-nom").val());
-            });
+        for(var i=0;i<resultat.length;i++){
+            texte+="<div class='monfilm list-group well' style='height: 220px;'>"
+            texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+            texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+            texte+="</div>"
+            texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
+            texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
+            texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
+            texte+="<span>Genres :</span>"
+            texte+=" <span>"+resultat[i].genres+"</span> "
+            texte+="<br>"
+            texte+="<span>"+resultat[i].resume[0]+"</span>"
+            texte+="</div>"
+            texte+="</div>"
+            console.log(resultat[i]);
+            RequeteDetails= new Requete();
+            RequeteDetails.recupererLeFilm(resultat[i].id,function(resultatdetail){
+                console.log(resultatdetail);
             })
+        }
+        console.log(texte);
+        $("#mesfilms").append(texte);
 
-            function recherchefilm(lefilm){
-                console.log(lefilm)
-                var UneRequete=new Requete();
-                var d = new Date();
-                var texte="";
-                var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
-                var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
-                var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
-                UneRequete.rechercherFilm({nom:"*"+lefilm+"*", debut: null, fin: null}, function(resultat) {
+    })
 
-                    for(var i=0;i<resultat.length;i++){
-                        console.log(resultat);
-                        texte+="<div class='monfilm list-group well' style='height: 220px;'>"
-                        texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
-                        if(resultat[i].image==null){
-                            texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
-                        }
-                        else
-                            texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='height: 100%;'/>"
+</script>
+<script src="js/films.js"></script>
 
-                        texte+="</div>"
-                        texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>"+resultat[i].nom+"</h2>"
-                        texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
-                        texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
-                        texte+="<span>Genres :</span>"
-                        texte+=" <span>"+resultat[i].genres+"</span> "
-                        texte+="<br>"
-                        texte+="<span>"+resultat[i].resume[0]+"</span>"
-                        texte+="</div>"
-                        texte+="</div>"
-
-                    }
-                    console.log("texte")
-                    $("#marecherche").append(texte);
-
-                })
-            }
-
-            var UneRequete=new Requete();
-            var d = new Date();
-            var texte="";
-            var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
-            var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
-            var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
-           UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function (resultat) {
-
-               for (var i = 0; i < resultat.length; i++) {
-                   texte += "<div class='monfilm list-group well' style='height: 220px;'>"
-                   texte += "<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
-                   if (resultat[i].image == null) {
-                       texte += "<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
-                   }
-                   else
-                       texte += "<img src='" + resultat[i].image + "' class='monaffiche' style='height: 100%;'/>"
-                   texte += "</div>"
-                   texte += "<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2>" + resultat[i].nom + "</h2>"
-                   texte += "<span>Réalisateur :" + resultat[i].realisateurs[0] + "</span><br>"
-                   texte += "<span>Date de sortie :" + resultat[i].dateSortie + "</span><br>"
-                   texte += "<span>Genres :</span>"
-                   texte += " <span>" + resultat[i].genres + "</span> "
-                   texte += "<br>"
-                   texte += "<span>" + resultat[i].resume[0] + "</span>"
-                   texte += "</div>"
-                   texte += "</div>"
-                   RequeteDetails = new Requete();
-                   RequeteDetails.recupererLeFilm(resultat[i].id, function (resultatdetail) {
-                       console.log(resultatdetail);
-                   })
-               }
-               $("#mesfilms").append(texte);
-
-           });
-
-        </script>
-		<script src="js/films.js"></script>
-
-    </body>
+</body>
 </html>
