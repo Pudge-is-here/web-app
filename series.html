@@ -105,6 +105,100 @@
 <link rel="stylesheet" src="/css/series.css">
 
 <script>
+    var offsetrecherche = $('.serieRecherche:last').offset();
+    var offsetfilms= $('.maserie:last').offset();
+
+    var UneRequete=new Requete();
+    var d = new Date();
+    var load=false;
+    var texte="";
+    var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
+    var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
+    var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
+    UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
+
+        for(var i=0;i<resultat.length;i++){
+            texte+="<div class='maserie list-group well' style='height: 220px;'>"
+            texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+            if(resultat[i].image == null){
+                texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+            }
+            else
+            {
+                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
+            }
+            texte+="</div>"
+            texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-serie.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
+            texte+="<span>Réalisateur :"+resultat[i].realisateurs+"</span><br>"
+            texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
+            texte+="<span>Genres :</span>"
+            texte+=" <span>"+resultat[i].genres+"</span> "
+            texte+="<br>"
+            texte+="<span>Nombre de saisons :</span>"
+            texte+="<span>"+resultat[i].nombreSaisons+"</span>"
+            texte+="<br>"
+            texte+="<span>Chaînes :</span>"
+            texte+="<span>"+resultat[i].chaines+"</span>"
+            texte+="<br>"
+            texte+="<span>Date de première et dernière diffusion :</span>"
+            texte+="<span>"+resultat[i].debut+"</span> "
+            texte+="<span>"+resultat[i].fin+"</span>"
+            texte+="</div>"
+            texte+="</div>"
+        }
+        $("#mesfilms").append(texte);
+    });
+    $(window).scroll(function(){
+        offsetrecherche = $('.serieRecherche:last').offset();
+        offsetfilms= $('.monfilm:last').offset();
+        console.log(""+(offsetfilms.top-$(window).height())+"<="+$(window).scrollTop()+"&& load =="+load);
+        if((offsetfilms.top-$(window).height()<= $(window).scrollTop())&& load==false)
+        {
+
+            load=true;
+            UneRequete.rechercheSuivante(function(nextData) {
+                console.log(nextData);
+                for(var j=0;j<nextData.length;j++){
+                    var infinitescrolltexte="";
+                    console.log(nextData.length)
+
+                    infinitescrolltexte+="<div class='serieRecherche list-group well' style='height: 220px;'>"
+                    infinitescrolltexte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+                    if(nextData[j].image == null){
+                        texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+                    }
+                    else
+                    {
+                        texte+="<img src='"+nextData[j].image+"' class='monaffiche' style='width: 75%;'/>"
+                    }
+                    infinitescrolltexte+="</div>"
+                    infinitescrolltexte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-serie.html?id="+nextData[j].id+"'>"+nextData[j].nom+"</a></h2>"
+                    infinitescrolltexte+="<span>Réalisateur :"+nextData[j].realisateurs+"</span><br>"
+                    infinitescrolltexte+="<span>Date de sortie :"+nextData[j].dateSortie+"</span><br>"
+                    infinitescrolltexte+="<span>Genres :</span>"
+                    infinitescrolltexte+=" <span>"+nextData[j].genres+"</span> "
+                    infinitescrolltexte+="<br>"
+                    infinitescrolltexte+="<span>Nombre de saisons :</span>"
+                    infinitescrolltexte+="<span>"+nextData[j].nombreSaisons+"</span>"
+                    infinitescrolltexte+="<br>"
+                    infinitescrolltexte+="<span>Chaînes :</span>"
+                    infinitescrolltexte+="<span>"+nextData[j].chaines+"</span>"
+                    infinitescrolltexte+="<br>"
+                    infinitescrolltexte+="<span>Date de première et dernière diffusion :</span>"
+                    infinitescrolltexte+="<span>"+nextData[j].debut+"</span> "
+                    infinitescrolltexte+="<span>"+nextData[j].fin+"</span>"
+                    infinitescrolltexte+="</div>"
+                    infinitescrolltexte+="</div>"
+
+                    $("#marecherche-serie").append(infinitescrolltexte);
+                }
+                load=false;
+            });
+
+
+
+        }
+    })
     $(function() {
         $("#btn-search").on("click", function() {
             $('#resultats-series').slideUp(200);
@@ -124,7 +218,7 @@
             console.log(resultat);
             for(var i=0;i<resultat.length;i++){
                 console.log(resultat);
-                texte+="<div class='maserie list-group well' style='height: 220px;'>"
+                texte+="<div class='serieRecherche list-group well' style='height: 220px;'>"
                 texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                 if(resultat[i].image == null){
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
@@ -157,46 +251,6 @@
         })
     }
 
-    var requeteSerie=new Requete();
-    var d = new Date();
-    var texte="";
-    var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
-    var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
-    var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
-    requeteSerie.rechercherSerie({nom: null, debut: "2013", fin: null}, function(resultat) {
-        for(var i=0;i<resultat.length;i++){
-
-            texte+="<div class='maserie list-group well' style='height: 220px;'>"
-            texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
-            if(resultat[i].image == null){
-                texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
-            }
-            else
-            {
-                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
-            }
-            texte+="</div>"
-            texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-serie.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
-            texte+="<span>Réalisateur :"+resultat[i].realisateurs+"</span><br>"
-            texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
-            texte+="<span>Genres :</span>"
-            texte+=" <span>"+resultat[i].genres+"</span> "
-            texte+="<br>"
-            texte+="<span>Nombre de saisons :</span>"
-            texte+="<span>"+resultat[i].nombreSaisons+"</span>"
-            texte+="<br>"
-            texte+="<span>Chaînes :</span>"
-            texte+="<span>"+resultat[i].chaines+"</span>"
-            texte+="<br>"
-            texte+="<span>Date de première et dernière diffusion :</span>"
-            texte+="<span>"+resultat[i].debut+"</span> "
-            texte+="<span>"+resultat[i].fin+"</span>"
-            texte+="</div>"
-            texte+="</div>"
-        }
-        $("#resultats-series").append(texte);
-
-    })
 </script>
 </body>
 </html>
