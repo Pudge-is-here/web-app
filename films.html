@@ -63,7 +63,7 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><input type="text" id="films-nom" class="form-control" placeholder="Rechercher un film" >
             </div>
             <button id="btn-search" class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0"><i class="glyphicon glyphicon-search"></i></button>
-            <button type="button" class="btn btn-default  col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
+            <button type="button" class="btn btn-default  hidden-xs col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
                 <span class="glyphicon glyphicon-circle-arrow-down"></span> Recherche avancée
             </button>
         </div>
@@ -73,11 +73,11 @@
             <div class="row col-lg-5 col-md-5 col-xs-5">
                 <div id="films-genres">
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="Adventure Film">Aventure</option>
+                        <option value="Martial Arts Film">Arts martiaux</option>
+                        <option value="Action">Action</option>
+                        <option value="Family">Famille</option>
+                        <option value="Thriller">Thriller</option>
                     </select>
                 </div>
                 <input type="text" id="films-realisateur" class="form-control " placeholder="Recherche par réalisateur">
@@ -105,7 +105,7 @@
         <p>&copy; Company 2013</p>
     </footer>
 </div> <!-- /container -->
-<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="js/jquery-2.0.3.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <script src="js/vendor/bootstrap.min.js"></script>
@@ -119,6 +119,87 @@
         s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 <script type="text/javascript">
+
+    var offsetrecherche = $('.filmrecherche:last').offset();
+    var offsetfilms= $('.monfilm:last').offset();
+
+        var UneRequete=new Requete();
+        var d = new Date();
+    var load=false;
+        var texte="";
+        var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
+        var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
+        var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
+        UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
+
+            for(var i=0;i<resultat.length;i++){
+                texte+="<div class='monfilm list-group well' style='height: 220px;'>"
+                texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+                if(resultat[i].image == null){
+                    texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+                }
+                else
+                {
+                    texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
+                }
+                texte+="</div>"
+                texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
+                texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
+                texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
+                texte+="<span>Genres :</span>"
+                texte+=" <span>"+resultat[i].genres+"</span> "
+                texte+="<br>"
+                texte+="<span>"+resultat[i].resume[0]+"</span>"
+                texte+="</div>"
+                texte+="</div>"
+
+            }
+            $("#mesfilms").append(texte);
+    });
+    $(window).scroll(function(){
+        offsetrecherche = $('.filmrecherche:last').offset();
+        offsetfilms= $('.monfilm:last').offset();
+        console.log(""+(offsetfilms.top-$(window).height())+"<="+$(window).scrollTop()+"&& load =="+load);
+        if((offsetfilms.top-$(window).height()<= $(window).scrollTop())&& load==false)
+        {
+
+            load=true;
+            UneRequete.rechercheSuivante(function(nextData) {
+                console.log(nextData);
+                for(var j=0;j<nextData.length;j++){
+                    var infinitescrolltexte="";
+                    console.log(nextData.length)
+
+                    infinitescrolltexte+="<div class='monfilm list-group well' style='height: 220px;'>"
+                    infinitescrolltexte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
+                    if(nextData[j].image == null){
+                        infinitescrolltexte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
+                    }
+                    else
+                    {
+                        infinitescrolltexte+="<img src='"+nextData[j].image+"' class='monaffiche' style='width: 75%;'/>"
+                    }
+                    infinitescrolltexte+="</div>"
+                    infinitescrolltexte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+nextData[j].id+"'>"+nextData[j].nom+"</a></h2>"
+                    infinitescrolltexte+="<span>Réalisateur :"+nextData[j].realisateurs[0]+"</span><br>"
+                    infinitescrolltexte+="<span>Date de sortie :"+nextData[j].dateSortie+"</span><br>"
+                    infinitescrolltexte+="<span>Genres :</span>"
+                    infinitescrolltexte+=" <span>"+nextData[j].genres+"</span> "
+                    infinitescrolltexte+="<br>"
+                    infinitescrolltexte+="<span>"+nextData[j].resume[0]+"</span>"
+                    infinitescrolltexte+="</div>"
+                    infinitescrolltexte+="</div>"
+                    $("#mesfilms").append(infinitescrolltexte);
+                }
+                load=false;
+            });
+
+
+
+        }
+    })
+
+
     $(function() {
         $("#btn-search").on("click", function() {
             $('#mesfilms').slideUp(200);
@@ -138,7 +219,7 @@
              console.log(resultat);
             for(var i=0;i<resultat.length;i++){
                 console.log(resultat);
-                texte+="<div class='monfilm list-group well' style='height: 220px;'>"
+                texte+="<div class='filmrecherche list-group well' style='height: 220px;'>"
                 texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
                 if(resultat[i].image==null){
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
@@ -164,39 +245,7 @@
     }
 
 
-    var UneRequete=new Requete();
-    var d = new Date();
-    var texte="";
-    var DateAujourdhui= d.getFullYear()+'-'+0+(d.getMonth()+1)+'-'+d.getDate();
-    var DateDebut=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-01';
-    var DateFin=d.getFullYear()+'-'+0+(d.getMonth()+1)+'-31';
-    UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
 
-        for(var i=0;i<resultat.length;i++){
-            texte+="<div class='monfilm list-group well' style='height: 220px;'>"
-            texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
-            if(resultat[i].image == null){
-                texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
-            }
-            else
-            {
-                texte+="<img src='"+resultat[i].image+"' class='monaffiche' style='width: 75%;'/>"
-            }
-            texte+="</div>"
-            texte+="<div class='mesinfos col-xs-8 col-md-10 col-lg-10'><h2><a href='/web-app/details-film.html?id="+resultat[i].id+"'>"+resultat[i].nom+"</a></h2>"
-            texte+="<span>Réalisateur :"+resultat[i].realisateurs[0]+"</span><br>"
-            texte+="<span>Date de sortie :"+resultat[i].dateSortie+"</span><br>"
-            texte+="<span>Genres :</span>"
-            texte+=" <span>"+resultat[i].genres+"</span> "
-            texte+="<br>"
-            texte+="<span>"+resultat[i].resume[0]+"</span>"
-            texte+="</div>"
-            texte+="</div>"
-
-        }
-        $("#mesfilms").append(texte);
-
-    })
 
 </script>
 <script src="js/films.js"></script>
