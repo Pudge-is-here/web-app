@@ -118,7 +118,7 @@
     UneRequete.rechercherSerie({nom: null, debut: DateDebut, fin: null}, function(resultat) {
 
         for(var i=0;i<resultat.length;i++){
-            texte+="<div class='maserie list-group well' style='height: 220px;'>"
+            texte+="<div class='maserie list-group well' style='height: 250px;'>"
             texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
             if(resultat[i].image == null){
                 texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
@@ -162,7 +162,7 @@
                     var infinitescrolltexte="";
                     console.log(nextData.length)
 
-                    infinitescrolltexte+="<div class='serieRecherche list-group well' style='height: 220px;'>"
+                    infinitescrolltexte+="<div class='serieRecherche list-group well' style='height: 250px;'>"
                     infinitescrolltexte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                     if(nextData[j].image == null){
                         infinitescrolltexte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
@@ -218,7 +218,7 @@
             console.log(resultat);
             for(var i=0;i<resultat.length;i++){
                 console.log(resultat);
-                texte+="<div class='serieRecherche list-group well' style='height: 220px;'>"
+                texte+="<div class='serieRecherche list-group well' style='height: 250px;'>"
                 texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                 if(resultat[i].image == null){
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"

@@ -63,9 +63,9 @@
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><input type="text" id="films-nom" class="form-control" placeholder="Rechercher un film" >
             </div>
             <button id="btn-search" class="btn btn-default  col-xs-0 col-sm-0 col-md-0 col-lg-0"><i class="glyphicon glyphicon-search"></i></button>
-            <button type="button" class="btn btn-default  hidden-xs col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
+            <!--<button type="button" class="btn btn-default  hidden-xs col-sm-3 col-md-3 col-lg-3" onclick="openMoreFilter()">
                 <span class="glyphicon glyphicon-circle-arrow-down"></span> Recherche avancée
-            </button>
+            </button>-->
         </div>
     </div>
    <!-- <div class="row" style="margin-left: 15px;">
@@ -133,7 +133,7 @@
         UneRequete.rechercherFilm({debut: DateDebut, fin: DateFin}, function(resultat) {
 
             for(var i=0;i<resultat.length;i++){
-                texte+="<div class='monfilm list-group well' style='height: 220px;'>"
+                texte+="<div class='monfilm list-group well' style='height: 250px;'>"
                 texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                 if(resultat[i].image == null){
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
@@ -170,7 +170,7 @@
                     var infinitescrolltexte="";
                     console.log(nextData.length)
 
-                    infinitescrolltexte+="<div class='monfilm list-group well' style='height: 220px;'>"
+                    infinitescrolltexte+="<div class='monfilm list-group well' style='height: 250px;'>"
                     infinitescrolltexte+="<div class='monimage col-xs-4 col-md-2 col-lg-2'>"
                     if(nextData[j].image == null){
                         infinitescrolltexte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'/>"
@@ -219,7 +219,7 @@
              console.log(resultat);
             for(var i=0;i<resultat.length;i++){
                 console.log(resultat);
-                texte+="<div class='filmrecherche list-group well' style='height: 220px;'>"
+                texte+="<div class='filmrecherche list-group well' style='height: 250px;'>"
                 texte+="<div class='monimage col-xs-4 col-md-2 col-lg-2' style='height: 100%;'>"
                 if(resultat[i].image==null){
                     texte+="<img src='image/no-image.jpg' class='monaffiche' style='width: 100%;'style='height: 100%;'/>"
